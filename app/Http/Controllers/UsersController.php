@@ -13,38 +13,16 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(10);    // usersテーブルのユーザーデータを取得
         
-        return view('users.index', ['users' => $users,]);
+        return view('users.index', ['users' => $users,]);   // users.index へ特定したユーザを伝える
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
 
     public function show($id)
     {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+       $user = User::find($id);     // usersテーブルの($id)を使ってユーザーを特定する
+        
+        return view('users.show', ['user' => $user,]);    // users.show へ特定したユーザを伝える
     }
 }
