@@ -9,8 +9,7 @@
                 <div class="media-body">
                     {{ $user->name }}
                 </div>
-                
-                <div>{!! link_to_route('users.show', 'View task', ['id' => $user->id]) !!}</div>
+
             </li>
         @endforeach
         

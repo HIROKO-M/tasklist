@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <a href="#">Your tasks</a>
-    
+    <a href="#">Your task</a>
     
 @endsection
