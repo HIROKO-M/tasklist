@@ -49,24 +49,46 @@ class TasklistsController extends Controller
 
     public function show($id)
     {
-        //
+        $task = Tasklist::find($id);
+
+        return view('tasklists.show', [ 'tasklist' => $task, ]);
     }
 
 
     public function edit($id)
     {
-        //
+        $task = Tasklist::find($id);
+        
+        return view('tasklists.edit', ['tasklist' => $task,]);
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+                'status' => 'required|max:10',
+                'content' => 'required|max:255',
+        ]);
+        
+
+        $request->user()->tasklists()->find($id)->update([
+            'status' => $request->status,
+            'content' => $request->content,
+        ]);
+        
+        return redirect('/');
+        
     }
 
 
     public function destroy($id)
     {
-        //
+        $task = \App\Tasklist::find($id);
+        
+        if(\Auth::user()->id === $task->user_id){
+            $task -> delete();
+        }
+        
+        return redirect()->back();
     }
 }

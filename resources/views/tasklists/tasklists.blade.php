@@ -14,7 +14,7 @@
             @foreach ($tasklists as $tasklist)
             <?php $user = $tasklist->user;     //tasklistのユーザーの取得?>
                 <tr>
-                        <td>{!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!}</td>
+                        <td>{!! link_to_route ('tasklists.show', $tasklist->id, ['id' => $tasklist->id]) !!}</td>
                         <td>{!! ($tasklist->content) !!}</td>
                         <td>{!! ($tasklist->status) !!}</td>
                     </tr>
