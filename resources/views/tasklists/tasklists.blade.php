@@ -1,21 +1,28 @@
-<ul class="media-list">
-@foreach ($tasklists as $tasklist)
-    <?php $user = $tasklist->user;     //tasklistのユーザーの取得?>
-    <li class="media">
-        <div class="media-left">
-            <img class="media-object img-rounded" src="{{ Gravatar::src($user->email, 50) }}" alt="">
-        </div>
-        
-        <div class="media-body">
-            <div>
-                {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!} 
-            </div>
-            <div>
-                <p>{!! nl2br(e($tasklist->content)) !!}</p>
-                <p>{!! nl2br(e($tasklist->status)) !!}</p>
-            </div>
-        </div>
-    </li>
-@endforeach
-</ul>
-{!! $tasklists->render() !!}
+<h1>タスク一覧</h1>
+
+    @if(count($tasklists) > 0)
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>タスク</th>
+                    <th>ステータス</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+            @foreach ($tasklists as $tasklist)
+            <?php $user = $tasklist->user;     //tasklistのユーザーの取得?>
+                <tr>
+                        <td>{!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!}</td>
+                        <td>{!! ($tasklist->content) !!}</td>
+                        <td>{!! ($tasklist->status) !!}</td>
+                    </tr>
+            @endforeach   
+            </tbody>
+        </table>
+    @endif
+    
+
+    
+    
