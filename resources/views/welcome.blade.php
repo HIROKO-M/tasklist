@@ -2,9 +2,13 @@
 
 @section('content')
     @if (Auth::check())
-        <?php $user = Auth::user(); ?>
+        <?php $user = Auth::user();     //現在認証されているユーザーの取得　?>
             {{ $user->name }}
-    
+            
+            @if (count($tasklists) > 0)
+                @include('tasklists.tasklists', ['tasklists' => $tasklists])
+            @endif
+            
     @else
         <div class="center jumbotron">
             <div class="text-center">
